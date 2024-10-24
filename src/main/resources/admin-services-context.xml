@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 		<bean id="mciOperations" class="org.springframework.jmx.access.MBeanProxyFactoryBean" lazy-init="true"> -->
+    <!--                 <property name="objectName" value="com.bmv.mci:Sistema=MCI, type=MockMciOperations" /> -->
+    <!--                 <property name="proxyInterface" value="com.bmv.mci.control.services.MciOperations" /> -->
+    <!--         </bean> -->
+
+    <!-- <context:property-placeholder location="file:/soft/app/stats/jboss-eap-6.3/standmci01/deployments/config/application-mci.properties"/> -->
+    <!-- <context:property-placeholder location="file:${mci.app.properties}"/>	 -->
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <import resource="classpath:base-context.xml" />
+    <import resource="classpath:rmi-remoting-client-context.xml" />
+    <import resource="classpath:info-distributor-context.xml" />
+    <import resource="classpath:transform-services-context.xml" />
+    <import resource="classpath:transform-services-ods-context.xml" />
+
+    <!--
+     	<bean id="grupoEscrituraEtf"
+            class="com.bmv.mci.admin.shared.dto.GrupoEscrituraEtf">
+            <property name="name" value="${mci.etfs.group.write}" />
+        </bean>	 -->
+
+    <bean id="rutaArchivosCsv" class="java.lang.String">
+        <constructor-arg index="0" value="${mci.csv.path}"/>
+    </bean>
+
+    <bean id="rutaArchivosEtfs" class="java.lang.String">
+        <constructor-arg index="0" value="${mci.etfs.ruta.cargainicial}"/>
+    </bean>
+
+    <bean id="intentosDelayArchivosEtfs" class="java.lang.Integer">
+        <constructor-arg index="0" value="${mci.delay.intentos.change}"/>
+    </bean>
+    <bean id="sleepDelayArchivosEtfs" class="java.lang.Long">
+        <constructor-arg index="0" value="${mci.delay.milisegundos.change}"/>
+    </bean>
+
+    <bean id="rtIP01" class="java.lang.String">
+        <constructor-arg index="0" value="${mci.realtime1}"/>
+    </bean>
+    <bean id="rtIP02" class="java.lang.String">
+        <constructor-arg index="0" value="${mci.realtime2}"/>
+    </bean>
+    <bean id="rtPuerto" class="java.lang.String">
+        <constructor-arg index="0" value="${recovery.rmi.port}"/>
+    </bean>
+
+    <bean id="perfilCompilacion" class="java.lang.String">
+        <constructor-arg index="0" value="${profile.id}"/>
+    </bean>
+
+    <bean id="versionCompilacion" class="java.lang.String">
+        <constructor-arg index="0" value="${project.version}"/>
+    </bean>
+
+    <bean id="ldapDomain" class="java.lang.String">
+        <constructor-arg index="0" value="${mci.seguridad.ldap.domain}"/>
+    </bean>
+
+    <bean id="ldapUrl" class="java.lang.String">
+        <constructor-arg index="0" value="${mci.seguridad.ldap.url}"/>
+    </bean>
+
+    <bean id="ldapDn" class="java.lang.String">
+        <constructor-arg index="0" value="${mci.seguridad.ldap.dn}"/>
+    </bean>
+
+    <bean id="rutaArchivoReferencia" class="java.lang.String">
+        <constructor-arg index="0" value="${import.sql.file.folder}"/>
+    </bean>
+
+    <bean id="nombreArchivoReferencia" class="java.lang.String">
+        <constructor-arg index="0" value="${import.sql.file.suffix.archivoReferencia}"/>
+    </bean>
+
+    <bean id="preferenteU" class="java.lang.String">
+        <constructor-arg index="0" value="admin"/>
+    </bean>
+    <bean id="preferenteP" class="java.lang.String">
+        <constructor-arg index="0" value="9f6f687094ec53ed7361bea24f5c9937eb4fec31dcb345ded2f06f35393794788f020865bb33d868"/>
+    </bean>
+
+</beans>
